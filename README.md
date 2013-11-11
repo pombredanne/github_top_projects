@@ -37,7 +37,7 @@ All Mortar projects share a global namespace so for this project you should prep
 
 ### Running in the cloud
 
-Once your project is registered you can run it on a 10-node Hadoop cluster using `mortar run pigscripts/top_projects.pig -f params/cloud.params`
+Once your project is registered you can run it on a 5-node Hadoop cluster using `mortar run pigscripts/top_projects.pig -f params/cloud.params --clustersize 5`
 
 ## Help
 
