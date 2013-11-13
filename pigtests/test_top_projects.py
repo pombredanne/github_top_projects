@@ -6,24 +6,18 @@ class FilterTest(PigTestCase):
 
     PigScript = 'top_projects'
 
-    def testFilterAndDate(self):
-        self.stubAlias('events', [
-            ['ForkedRepo', 'ForkEvent', '2013-02-07T10:00:42-08:00'],
-            ['PushRepo', 'PushEvent ', '2013-02-07T10:00:42-08:00'],
-            ['WatchRepo', 'WatchEvent', '2013-02-07T10:00:42-08:00']
+    def test__results__sorted_correctly(self):
+        self.stubAlias('top_repos', [
+            ['2013-02', 'repo_1', 3],
+            ['2013-01', 'repo_2', 2],
+            ['2013-02', 'repo_3', 7]
         ])
 
-        self.assertAliasEquals('events_with_date', [
-            ('ForkedRepo', '2013-02'),
-            ('WatchRepo', '2013-02')
+        self.assertAliasEquals('results', [
+            ('2013-01', 'repo_2', 2),
+            ('2013-02', 'repo_3', 7),
+            ('2013-02', 'repo_1', 3),
         ])
-
-    def testFinalOutput(self):
-        records = list(self.getAlias('results'))
-        self.assertTrue(3 == len(records))
-
-        for (year_month, repo, score) in records:
-            self.assertTrue(score > 1)
 
 if __name__ == '__main__':
     main()

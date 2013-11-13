@@ -45,6 +45,10 @@ repo_scores = FOREACH (GROUP events_with_date BY (year_month, item)) GENERATE
               ;
 
 
+
+
+
+
 -- Find the top 5 repos for each month that are over some threshold score.
 top_repos = FOREACH (GROUP repo_scores BY year_month) {
               filtered = FILTER repo_scores BY score > $MIN_SCORE; 
@@ -54,9 +58,25 @@ top_repos = FOREACH (GROUP repo_scores BY year_month) {
             }
 
 
+
+
+
+
+
 -- Format output: ensure sort order and use only one reducer to get one output file.
 results = ORDER top_repos BY year_month, score DESC PARALLEL 1;
 
 
+
+
 rmf $OUTPUT_PATH;
 STORE results INTO '$OUTPUT_PATH';
+
+
+
+
+
+
+
+
+
