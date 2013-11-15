@@ -64,7 +64,7 @@ top_repos = FOREACH (GROUP repo_scores BY year_month) {
 
 
 -- Format output: ensure sort order and use only one reducer to get one output file.
-results = ORDER top_repos BY year_month, score DESC PARALLEL 1;
+results = ORDER top_repos BY year_month, score PARALLEL 1;
 
 
 
