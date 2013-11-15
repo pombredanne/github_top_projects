@@ -1,4 +1,0 @@
-EVENT_LOGS_INPUT_PATH=s3n://mortar-example-data/github/events
-OUTPUT_PATH=s3n://mortar-example-output-data/jkarn/github/out
-DEFAULT_PARALLEL=12
-MIN_SCORE=500
